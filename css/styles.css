@@ -691,6 +691,14 @@ ul {
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
 }
 
+/* Fix date input rendering on iOS/Android */
+.form-group input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 52px;
+  display: block;
+}
+
 .form-group input::placeholder,
 .form-group textarea::placeholder {
   color: var(--text-muted);
