@@ -8,7 +8,40 @@ document.addEventListener('DOMContentLoaded', () => {
   shuffleGallery();
   initNavbarShadow();
   initScrollReveal();
+  initLightbox();
 });
+
+function initLightbox() {
+  const items = document.querySelectorAll('.gallery-item img');
+  if (!items.length) return;
+
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  lightbox.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img alt="" />';
+  document.body.appendChild(lightbox);
+
+  const lbImg = lightbox.querySelector('img');
+  const close = () => {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  items.forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target !== lbImg) close();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') close();
+  });
+}
 
 function initNavbarShadow() {
   const navbar = document.querySelector('.navbar');
