@@ -9,7 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbarShadow();
   initScrollReveal();
   initLightbox();
+  initBackToTop();
 });
+
+function initBackToTop() {
+  const btn = document.createElement('button');
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.textContent = '↑';
+  document.body.appendChild(btn);
+
+  const onScroll = () => btn.classList.toggle('show', window.scrollY > 400);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
 
 function initLightbox() {
   const items = document.querySelectorAll('.gallery-item img');
