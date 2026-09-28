@@ -1089,6 +1089,11 @@ ul {
   fill: none;
 }
 
+.footer-socials .tiktok-icon {
+  stroke: none;
+  fill: currentColor;
+}
+
 .footer-bottom {
   display: flex;
   justify-content: space-between;
